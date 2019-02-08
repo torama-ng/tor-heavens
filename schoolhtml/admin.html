@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>School</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet" >
+    <link href="/project.css" rel="stylesheet" >
+    <script src="schoolscript.js"></script>
+
+</head>
+<body data-spy="scroll" data-target="#navbarSupportedContent">
+<div id="Home">
+<div class=" wraper ">
+<nav class=" banner bg-light">
+<div class="row">
+  <!-- <a href="#" class="nav-link ml-2 ">Students</a> -->
+  <a href="#" class="nav-link ml-auto">Teachers</a>
+  <!-- <div id="sech" class=" col p-1  mx -auto ">
+    <div class="input-group ">
+      <input type="text" class="form-control " placeholder="Search">
+      <div class="input-group-append">
+        <button class="btn btn-warning" type="button">
+          <i class="fa fa-search "></i>
+        </button>
+      </div>
+    </div>
+  </div> -->
+  <a href="admin.html" class="nav-link mr-2">Admin</a>
+    </div>
+  <div class="navbar navbar-expand-lg navbar-light">     
+  <h1><i class="fas fa-graduation-cap text-primary ml-2"><span class="brand">Brand</span></i></h1>
+    <button class="navbar-toggler  mr-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">        
+    <ul class="navbar-nav m-auto">
+      <li class="nav-item">
+          <a href="#Home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#About" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+      </li>
+      <li class="nav-item">
+      <a href="#contact" class="nav-link">Contacts</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<button class="tablink2" onclick="openTab2('Students', this, 'gray')" id="defaultOpen" >Students</button>
+<!-- <button class="tablink2" onclick="openTab('Admission', this, 'gray')" >Teachers</button>
+<button class="tablink" onclick="openTab('Academics', this, 'gray')" >Academics</button> -->
+<button class="tablink2" onclick="openTab2('Teachers', this, 'gray')" >Teachers</button>
+  
+      <!-- About Section -->
+<div id="Students" class="tabcontent">
+<!-- <div id="About"> -->
+<div class=" my-3">
+<!-- <h3 class="text-center">About</h3> -->
+<div class="row">
+  
+<div class="container-fluid">
+  <h3>Dashboard</h3>
+<div class="row">
+  <div class="col">
+  <h5>Classes</h5>
+  <div class=" bg-primary"> 
+  <h6>Nursery One</h6>
+  <h6>Nursery One</h6>
+  </div>
+  <!-- Students -->
+  <div class="col d-flex bg-secondary ">
+      <div class="m-1 bg-primary"> 
+      <p>Owei Bright</p>
+  </div>    
+  <div class="col m-1">
+      <input type="text" placeholder="SurName">
+      <input type="text" placeholder="LastName">
+      <input type="text" placeholder="Class">
+      <input type="text" placeholder="Phone">
+      <button>Add Students</button>
+  </div>
+</div>
+</div> 
+
+  </div>
+    </div>
+    
+</div>
+</div>
+</div> 
+</div>
+<!-- section -->
+<div id="Teachers" class="tabcontent">
+
+<!-- Teachers --> 
+<div class="col">
+    <h5>Teachers</h5>
+    <div class="col d-flex bg-secondary ">
+        <div class="col m-1 ">
+        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Qualifications">
+        <input type="text" placeholder="Phone">
+        <button>Add Teachers</button>
+      </div>
+      <div class=" m-1 bg-primary "> 
+          <p>Dr Heavens</p>
+      </div>
+    </div>
+    </div>
+</div>
+</div>  
+<!-- End of tab Menu -->
+</div>  
+ 
+  
+<footer>
+<div class="container">
+<div class="row">
+  <div class="col three-clo">
+    <h4 class="text-center">Follow Us</h4>
+    <p class="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, sint et. Aut voluptates exercitationem eos sequi ipsum fuga consequuntur voluptatem amet! Blanditiis vel harum expedita consequatur dolores excepturi maiores sunt?</p>
+    <div class="social-icon ">
+      <a href="#"><i class="fa fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-google-plus-g"></i></a>
+    </div>
+    <h6 class="text-center">Copy right</h6>
+  </div>
+</div>
+</div>
+</footer>
+<script>
+  
+        // to enable the first tab to load automatically
+       document.getElementById("defaultOpen").click();
+</script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"><\/script>')</script>
+      <script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>   
+      <script src="/javascripts/misc.js"></script>
+  </body>
+  </html>

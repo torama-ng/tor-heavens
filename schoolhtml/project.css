@@ -1,0 +1,257 @@
+.banner{
+    background:lightgray; 
+    /* background:#0cffc3; */
+    position: relative; 
+    z-index: 10;
+
+    /* background: #181; */
+}
+.brand{
+    color: #ff4f81!important;
+}
+/* .padding{padding: 2rem 0;} */
+.card{margin: 0.5rem;}
+.hei{
+ height:50vh;
+}
+#sech{
+    width: 50%;
+    height: 10px;
+}
+
+/* tabMenu section */
+.tablink{
+background: #555;
+color:white;
+float:left;
+border:none;
+outline: none;
+cursor: pointer;
+padding: 14px 16px;
+font-size: 17px;
+width: 25%;
+}
+.tablink2{
+    background: blue;
+    color:white;
+    float:left;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+    
+    }
+.mar{margin-left: 150px;}
+.tablink:hover{
+    background-color:#777;
+    /* border-bottom: solid 2px;
+    border-bottom-color: #ff4f81; */
+}
+.tablink2:hover{
+    background-color: gray;
+    /* border-bottom: solid 2px;
+    border-bottom-color: #ff4f81; */
+}
+
+.tabcontent{
+    color: white;
+    display: none;
+    padding: 50px;
+    text-align: cente;
+    min-height: 80vh;
+}
+#About{background-color: gray;}
+#Admission{background-color: gray;}
+#Academics{background-color:  gray;}
+#Athletics{background-color: gray;}
+
+#Students{background-color: #eeeeee;}
+#Teachers{background-color: #eeeeee;}
+/* tabMenu ends  */
+
+/* .height{
+    height: 90vh;
+    background: #ff4f81
+}
+ */
+ #Admission{
+   background:url(graduation.jpeg) no-repeat;
+   background-size:cover; 
+   min-height: 80vh;
+   color: #ff4f81;
+}
+.adcolo{
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+
+}
+.weoffer{
+    font-weight: bold;
+}
+
+ul li{
+    list-style-type: none;
+    font-weight: bold;
+}
+.colo{
+    background: #ff4f81;
+}
+.inform{
+    background: url(upload.jpg) 0px 0px fixed;
+    background-size: cover;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+}
+.inform h1{
+    color:#fff;
+    letter-spacing: 10px;
+    text-align: center;
+}
+.inform_form{
+    width:100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inform-left{
+    padding-left: 0;
+}
+.inform input[type="text"], input[type="email"],input[type="phone"]{
+    width: 100%;
+    color: #fff;
+    background: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0.8em 1em;
+    margin-bottom: 2em;
+    border: none;
+    border-bottom: solid 2px #fff;
+    display: inline-block; 
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+
+}
+.inform textarea{
+    resize: none;
+    width: 100%;
+    color: #fff;
+    background: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0.6em 1em;
+    min-height: 10em;
+    border: none;
+    border-bottom: solid 2px #fff;
+    display: inline-block; 
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+
+}
+ /* .inform input[placeholder="Message"]{color:#fff;}  */
+.inform input[type="submit"]{
+    outline: none;
+    color: #fff;
+    padding: 0.7em 1em;
+    font-size: 14px;
+    margin: 1em 0 0 0;
+    border: 1px solid #fff;
+    background: #ff4f81;
+    transition: 0.5s all;
+    -webkit-transition:  0.5s all;
+    -moz-transition:  0.5s all;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+.inform input[type="submit"]:hover{
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.inform input[type="text"]:hover,.inform input[type="text"]:focus,
+.inform input[type="email"]:hover,.inform input[type="email"]:focus,
+.inform template:hover,.inform textarea:focus,input[type="phone"]:hover,input[type="phone"]:focus{
+    border: #ff4f81;
+}
+.foot{
+    background: #000;
+    column-count: 3;
+    column-gap: 10px;
+    column-width: 40px;
+    list-style-type: none;
+    
+}
+.three-clo{
+    padding: 10px;
+    margin-top: 30px; 
+}
+.social-icon{
+    margin-top: 0.5rem;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    border: 1px solid #ff4f81;
+    font-size: 16px;
+    color: #ff4f81;
+    cursor: pointer;
+}
+.social-icon i:hover{
+    color: #000;
+}
+.bgimage{
+    background:linear-gradient(rgba(0, 0 , 0 , 0.5), rgba(0, 0, 0, 0.5)), url(stduding.jpeg)no-repeat;
+    background-size:cover; 
+    min-height: 50vh;
+    color: #ff4f81;
+   
+}
+.navbar{
+    padding: 0px;
+}
+.navbar-nav li{
+    z-index:1;
+}
+.navbar-nav li a{
+    font-size: 17px;
+    padding: 15px 40px!important;
+}
+
+.navbar-nav li a:hover{
+    border-right: 3px solid #ff4f81;
+    border-left: 3px solid #ff4f81;
+    transition: 0.5s all;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #000;
+}
+
+@media(max-width:992px){
+    .navbar-toggler{
+        margin:10px 0px 10px 30px;
+        
+        border-color:#ff4f81; 
+    }
+    .navbar-toggler:hover, .navbar-toggler:focus{
+        border-bottom-color: #ff4f81;
+        background-color: #fff;
+        
+    }
+
+    .navbar-nav li a{
+        text-align: center;
+        background-color: aliceblue;
+    }
+    .navbar-nav li a:hover{
+        background-color: #ff4f81
+    }
+}
