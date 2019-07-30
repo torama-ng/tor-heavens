@@ -10,12 +10,12 @@
     <div class=" row justify-content-center">       
         <a class="btn btn-primary mr-1"href="{{ route('customers') }}">Add Customer</a> 
         <a class="btn btn-primary mr-1"href="{{ route('posrecords.create') }}">Add Record</a> 
-        <input class="form-control col-md-9" id="myInput" type="text" placeholder="Search.."> 
+        <a href="{{ route('import') }}" class="btn btn-info mr-1">Import</a>
+        <input class="form-control col-md-8" id="myInput" type="text" placeholder="Search.."> 
     </div>
     <table class="table table-striped responsive">
         <thead>
           <tr>
-            <th scope="col">No #</th>
             <th scope="col">Customers Name</th>
             <th scope="col">Amount</th>
             <th scope="col">Card No#</th>
@@ -32,7 +32,6 @@
       @if(count($userrecords) > 0)
          @foreach($userrecords as $record)
             <tr>
-            <th scope="row">{{$record->id}}</th>
             <td>{{$record->customers_name}}</td>
             <td>{{$record->amount}}</td>
             <td>{{$record->card_number}}</td>
@@ -49,8 +48,7 @@
           </tr>
          <!-- Modal -->
       <div class="modal fade" id="modalpix" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          
-        
+            
       </div>
           @endforeach
          

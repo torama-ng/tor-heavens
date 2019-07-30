@@ -25,3 +25,6 @@ Route::post('posrecords', 'PosrecordsController@store');
 
 Route::get('customers', 'CustomersController@index')->name('customers');
 Route::post('customers', 'CustomersController@store');
+
+Route::get('import', 'ExcelController@create')->name('import');
+Route::post('import', 'ExcelController@store');

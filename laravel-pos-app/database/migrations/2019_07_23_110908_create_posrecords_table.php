@@ -24,7 +24,7 @@ class CreatePosrecordsTable extends Migration
             $table->string('trans_date');
             $table->string('action_taken');
             $table->string('remarks');
-            $table->string('avater');
+            $table->string('avater')->default('default.jpg');
     
             $table->timestamps();
         });

@@ -21,8 +21,9 @@ class PosrecordsController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $userrecords = $user->posrecord; //gives all posrecords of a user
-        $posrecords = Posrecord::orderBy('created_at','desc')->paginate(5);
-        return view('pos.posrecords', compact('posrecords', 'userrecords'));
+    //  $posrecords = Posrecord::find('user_id', $user->posrecord)->orderBy('created_at','desc')->paginate(10);
+        $posrecords = Posrecord::orderBy('created_at','desc')->paginate(10);
+        return view('pos.posrecords', compact( 'userrecords','posrecords'));
 
     }
 
@@ -50,8 +51,6 @@ class PosrecordsController extends Controller
             $avater = $request->file('avater');
             $fileName = time() . '.' . $avater->getClientOriginalExtension();
             Image::make($avater)->resize(300, 300)->save(public_path('/uploads/avater/' . $fileName));
-        }else{
-            $fileName = "default.jpg";
         }
 
         $posrecord = new Posrecord();
