@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Customer;
 
 class CustomersController extends Controller
@@ -15,7 +16,9 @@ class CustomersController extends Controller
 
 
     public function index(){
-        return view('customers.customers');
+        $user = Auth::user();
+        $customer = Customer::orderBy('created_at','desc')->paginate(5);
+        return view('customers.customers', compact('customer', 'user'));
     }
 
     public function store(Request $request){

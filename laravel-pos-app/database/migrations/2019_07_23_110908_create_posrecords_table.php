@@ -15,6 +15,8 @@ class CreatePosrecordsTable extends Migration
     {
         Schema::create('posrecords', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->integer('customer_id');
             $table->string('customers_name');
             $table->string('amount');
             $table->string('card_number');

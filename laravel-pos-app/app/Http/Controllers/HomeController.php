@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use User;
+use Image;
 
 class HomeController extends Controller
 {
@@ -13,7 +16,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(['auth' => 'verified']);
     }
 
     /**
@@ -23,6 +27,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', array('user' => Auth::user()));
     }
+
+        public function update_avatar(Request $request){
+
+            if($request->hasFile('avatar')){
+                $avatar = $request->file('avatar');
+                $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/profile_pics/' . $fileName));
+                $user = Auth::user();
+                $user->avatar = $fileName;
+                $user->save();
+            }
+
+            return view('home', array('user' => Auth::user()));
+        }
 }

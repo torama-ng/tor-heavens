@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Excel;
 use App\Posrecord;
 use DB;
+use App\Customer;
 use App\User;
 
 
 class ExcelController extends Controller
 {
     public function create(){
-        return view('excel.excel');
+        $user = Auth::user();
+        return view('excel.excel', compact('user') );
 
     }
 
@@ -33,9 +35,32 @@ class ExcelController extends Controller
                    
                     // $user = Auth::user();
                     // $user->id = $value['user_id'];
+                    // get customer id from customer name in customer table
+                    // or create customer in customer table and get id
+                    $c_rec = Customer::all()->where('name', $row['customers_name'])->first();
+                    // dd($c_id);
+                    if($c_rec == true){
+                        $c_id = $c_rec->id;
+                        
+                    } else {
+                        // create this customer in customer table
+                        $customer = new Customer();
+                        $customer->name = $row['customers_name'];
+                        $customer->phone = $row['customer_phone'];
+
+                        $customer->save();
+                        $c_id= Customer::all()->where('name', $row['customers_name'])
+                        ->first()->id;
+                    }
+                      
+                        
+                    
+                    
                     $insert_data = array(
                         'user_id' => $user_id = auth()->user()->id,
-                        'customers_name' => $row['customers_name'],  
+                        // 'customers_name' => $row['customers_name'],
+                        'customer_id'   => $c_id,
+                        'customers_name' => $c_id,
                         'amount' => $row['amount'],
                         'bank' => $row['bank'],
                         'card_number' => $row['card_number'],
@@ -46,17 +71,23 @@ class ExcelController extends Controller
                         'remarks' => $row['remarks'],
                         
                     );
+                    
+                    if(!empty($insert_data)){
+                        // $insert_data = new Posrecord();
+                        // $insert_data->save();
+                        Posrecord::insert($insert_data);
+                       // DB::table('posrecords')->insert($insert_data);
+                    }
+
+                    
                 }
+                
             }
 
-            if(!empty($insert_data)){
-                // $insert_data = new Posrecord();
-                // $insert_data->save();
-                Posrecord::insert($insert_data);
-               // DB::table('posrecords')->insert($insert_data);
-            }
+            
         }
-        return redirect ('/posrecords')->with('success', 'Record imported Successfully');
+        
+        return redirect ('/posrecords')->with('success', 'Record imported Successfully')->with('customer_id',$c_id);
 
     }
 }

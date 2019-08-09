@@ -1,0 +1,13 @@
+ #link, #link:visited{
+   height: 20px;
+    color: gray;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  #link:hover, #link:active {
+    background-color: rgb(241, 238, 238);
+    text-decoration: none;
+  }
