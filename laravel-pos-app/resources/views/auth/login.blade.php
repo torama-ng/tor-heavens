@@ -58,7 +58,7 @@
                                 </button >
 
                                 <a href ="/login/google" class="btn btn-danger">
-                                   G+ Login
+                                <i class="fab fa-google-plus mr-1"></i>Login
                                 </a>
 
                                 

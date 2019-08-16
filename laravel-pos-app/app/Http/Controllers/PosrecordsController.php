@@ -34,14 +34,14 @@ class PosrecordsController extends Controller
              
        }else{
         //users
-       $posrecord = Posrecord::where('user_id', $user_id)->paginate(6);
+       $posrecord = Posrecord::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(6);
        $pos_rec = $posrecord;
        }
        
        
        //display filter count
-       $bank_count = Posrecord::with('bank')->count();
-       $loc_count = Posrecord::with('terminal_location')->count();
+       $bank_count = Posrecord::where('user_id', $user_id)->with('bank')->count();
+       $loc_count = Posrecord::where('user_id', $user_id)->with('terminal_location')->count();
        
        //filtering
        if(request()->has('bank')){  
@@ -59,17 +59,18 @@ class PosrecordsController extends Controller
 
 
     public function create(){
+        $user = Auth::user();
         $customers = Customer::all();
-        return view('pos.posrecordcreate', compact('customers'));
+        return view('pos.posrecordcreate', compact('customers','user'));
     }
 
-    public function search(Request $request){
-        $search = $request->get('search');
-        $posrecord = Posrecord::where('bank', 'like', '%'.$search.'%')
-                                ->orWhere('terminal_location','like', '%'.$search.'%')
-                                ->paginate(5);
-        return view('pos.posrecords', compact('posrecord'));
-    }
+    // public function search(Request $request){
+    //     $search = $request->get('search');
+    //     $posrecord = Posrecord::where('bank', 'like', '%'.$search.'%')
+    //                             ->orWhere('terminal_location','like', '%'.$search.'%')
+    //                             ->paginate(5);
+    //     return view('pos.posrecords', compact('posrecord'));
+    // }
 
     public function store(Request $request){
         $this->validate($request, [
@@ -117,9 +118,10 @@ class PosrecordsController extends Controller
     }
 
     public function edit($posrecord){
+        $user = Auth::user();
         $customers = Customer::all();
         $posrecord= Posrecord::find($posrecord);
-        return view('pos.edit', compact('customers','posrecord'));
+        return view('pos.edit', compact('customers','posrecord', 'user'));
     }
 
     public function update(Request $request, $posrecord){

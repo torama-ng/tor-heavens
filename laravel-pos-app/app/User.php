@@ -40,4 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posrecord(){
         return $this->hasMany('App\Posrecord');
     }
+    public function customer(){
+        return $this->hasMany('App\customer');
+    }
 }

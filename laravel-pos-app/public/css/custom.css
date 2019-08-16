@@ -1,3 +1,7 @@
+body {
+  min-height: 75rem;
+  padding-top: 4rem;
+}
  #link, #link:visited{
    height: 20px;
     color: gray;

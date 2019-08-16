@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-8 colmd-offset-1 p-4">
                 <h4> {{$user->name}} profile </h4>
-                <form enctype="multipart/form-data" action="home" method="POST">
+                <form enctype="multipart/form-data" action="profile" method="POST">
                     <label>Update Profile Image</label>
                     <input type="file" name="avatar">
                     <input type ="hidden" name="_token" value="{{csrf_token()}}">

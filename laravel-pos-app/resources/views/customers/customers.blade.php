@@ -23,7 +23,7 @@
           </div> 
           <div class="form-group col-md-3">
           <br>
-          <button type="submit" class="btn btn-primary">Add Customer</button>
+          <button type="submit" class=" mt-2 btn btn-primary">Add Customer</button>
           </div> 
           </div>
         
@@ -54,7 +54,9 @@
          
 
           @else 
+          <div class="alert alert-success" role="alert">
           <p>No Customer found</p>
+          </div>
           @endif
          
         </tbody>

@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/custom.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/3a9d6784a1.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,8 +25,13 @@
 <body>
     <div id="app">
       @include('inc.navbar')
-
+     <div class="col-md-3">
+      <div class="sidebar">
       @include('inc.sidenav')
+      </div>
+      </div>
+      
+      <div class="col">
       <div id="main">
         <main class="py-4">
         <div class="container">
@@ -34,6 +40,20 @@
         </main>
         </div>
     </div>
+    </div>
+
+    <footer class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-3  ml-5">
+            <h5 class="ml-5">About</h5>
+                <a class="text-muted " href="#">Team</a>
+                <a class="text-muted " href="#">Locations</a>
+                <a class="text-muted " href="#">Privacy</a>
+                <a class="text-muted " href="#">Terms</a>
+            <small class="d-block mb-3 text-muted">&copy; 2019</small>
+            </div>
+        </div>
+        </footer>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>

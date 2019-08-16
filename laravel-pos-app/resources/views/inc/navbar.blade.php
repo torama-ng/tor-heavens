@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top shadow-sm">
     @guest
     @else
     <div class=" bg-default"><span style="font-size:25px;cursor:pointer" onclick="openNav()">&#9776;</span></div> 

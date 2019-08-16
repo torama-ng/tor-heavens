@@ -13,13 +13,13 @@
 
 Route::get('/', function () {
 
-    return view('layouts.app',array('user' => Auth::user()));
+    return view('welcome',array('user' => Auth::user()));
 });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'HomeController@update_avatar')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile', 'ProfileController@update_avatar')->name('profile');
 
 Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

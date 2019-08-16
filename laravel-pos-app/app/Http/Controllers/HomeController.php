@@ -30,17 +30,17 @@ class HomeController extends Controller
         return view('home', array('user' => Auth::user()));
     }
 
-        public function update_avatar(Request $request){
+    // public function update_avatar(Request $request){
 
-            if($request->hasFile('avatar')){
-                $avatar = $request->file('avatar');
-                $fileName = time() . '.' . $avatar->getClientOriginalExtension();
-                Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/profile_pics/' . $fileName));
-                $user = Auth::user();
-                $user->avatar = $fileName;
-                $user->save();
-            }
+    //     if($request->hasFile('avatar')){
+    //         $avatar = $request->file('avatar');
+    //         $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+    //         Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/profile_pics/' . $fileName));
+    //         $user = Auth::user();
+    //         $user->avatar = $fileName;
+    //         $user->save();
+    //     }
 
-            return view('home', array('user' => Auth::user()));
-        }
+    //     return view('profile', array('user' => Auth::user()));
+    // }
 }

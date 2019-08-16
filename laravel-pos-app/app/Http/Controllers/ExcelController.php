@@ -21,7 +21,7 @@ class ExcelController extends Controller
 
     public function store(Request $request){
         $this->validate($request,[
-            'select_file' => 'required|mimes:xls,xlsx',
+            'select_file' => 'required|mimes:xls,xlsx,csv',
         ]);
 
         $path = $request->file('select_file')->getRealPath();
@@ -47,7 +47,7 @@ class ExcelController extends Controller
                         $customer = new Customer();
                         $customer->name = $row['customers_name'];
                         $customer->phone = $row['customer_phone'];
-
+                        $customer->user_id = auth()->user()->id;
                         $customer->save();
                         $c_id= Customer::all()->where('name', $row['customers_name'])
                         ->first()->id;
