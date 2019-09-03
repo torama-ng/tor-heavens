@@ -66,11 +66,11 @@
             <option> Fido Yenegwe</option>
         </select>
         </div>
-    
+        
         <div class="form-group col-md-3" >
             <label >Transaction Date</label>
-            <input name="trans_date" type="date" value="{{ $posrecord->trans_date }}" class="form-control form-control"> 
-            <div>{{$errors->first('trans_date')}}</div>
+            <input name="trans_date_time" type="datetime-local" value="{{ $posrecord->trans_date_time }}" class="form-control form-control"> 
+            <div>{{$errors->first('trans_date_time')}}</div>
         </div>
     </div>
     <div class="form-row justify-content-center">
@@ -98,7 +98,7 @@
     </div>
 
   <div class="form-row justify-content-center"> 
-  <button type="submit" class="btn btn-primary col-md-3">Add Record</button>
+  <button type="submit" class="btn btn-primary col-md-3">Update Record</button>
   </div>
   @csrf
 </form>

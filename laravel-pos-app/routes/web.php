@@ -16,7 +16,8 @@ Route::get('/', function () {
     return view('welcome',array('user' => Auth::user()));
 });
 
-Auth::routes(['verify' => true]);
+//Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile', 'ProfileController@update_avatar')->name('profile');
@@ -36,5 +37,56 @@ Route::get('/search','PosrecordController@search');
 Route::get('customers', 'CustomersController@index')->name('customers');
 Route::post('customers', 'CustomersController@store');
 
+Route::post('multiuploads', 'MultiuploadsController@store')->name('multiuploads');
 Route::get('import', 'ExcelController@create')->name('import');
 Route::post('import', 'ExcelController@store');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+
+
+
+    Route::get('/', [
+
+        'uses' => 'UsersController@index',
+
+        'as' => 'admins'
+    ]);
+
+    Route::get('/create', [
+
+        'uses' => 'UsersController@create',
+
+        'as' => 'admins.create'
+    ]);
+
+    Route::post('/store', [
+
+        'uses' => 'UsersController@store',
+
+        'as' => 'admins.store'
+    ]);
+
+    Route::get('/admin/{id}', [
+
+        'uses' => 'UsersController@admin',
+
+        'as' => 'admins.admin'
+    ]);//->middleware('admin');
+
+    Route::get('/not-admin/{id}', [
+
+        'uses' => 'UsersController@not_admin',
+
+        'as' => 'admins.not.admin'
+    ]);
+
+    Route::get('/delete/{id}', [
+
+        'uses' => 'UsersController@destroy',
+
+        'as' => 'admins.delete'
+    ]);
+
+   
+
+});

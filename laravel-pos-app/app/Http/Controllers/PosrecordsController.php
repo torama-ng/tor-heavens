@@ -14,6 +14,8 @@ class PosrecordsController extends Controller
     public function __construct()
     {
         $this->middleware(['auth' => 'verified']);
+        $this->middleware('admin',['except' =>['index']]);
+
     }
 
 
@@ -21,6 +23,7 @@ class PosrecordsController extends Controller
     public function index(){
         $user = Auth::user();
         $user_id = auth()->user()->id;
+        $admin = auth()->user()->admin;
         $user_email = auth()->user()->email;
         // $user = User::find($user_id);
         // $userrecords = $user->posrecord; //gives all posrecords of a user
@@ -29,13 +32,17 @@ class PosrecordsController extends Controller
        //$posrecord = Posrecord::where('user_id', '1')->paginate(10);
        
        //check for admin
-       if($user_email == "admin@torama.ng"){
-        $posrecord = Posrecord::orderBy('created_at','desc')->paginate(10);
-             
-       }else{
+       if($user_id == "1"){
+        $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25);
+          // return 123;  
+       }
+       elseif($admin == "1"){
         //users
        $posrecord = Posrecord::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(6);
        $pos_rec = $posrecord;
+       }
+       else{
+        $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25); 
        }
        
        
@@ -64,13 +71,7 @@ class PosrecordsController extends Controller
         return view('pos.posrecordcreate', compact('customers','user'));
     }
 
-    // public function search(Request $request){
-    //     $search = $request->get('search');
-    //     $posrecord = Posrecord::where('bank', 'like', '%'.$search.'%')
-    //                             ->orWhere('terminal_location','like', '%'.$search.'%')
-    //                             ->paginate(5);
-    //     return view('pos.posrecords', compact('posrecord'));
-    // }
+    
 
     public function store(Request $request){
         $this->validate($request, [
@@ -80,7 +81,7 @@ class PosrecordsController extends Controller
             'card_number' => 'required',
             'trans_id' => 'required',
             'terminal_location' => 'required',
-            'trans_date' => 'required',
+            'trans_date_time' => 'required',
             'action_taken' => 'required',
             'remarks' => '',
             'avater' =>'|file|image|nullable|max:5000',
@@ -94,6 +95,21 @@ class PosrecordsController extends Controller
             $fileName = "default.jpg";
         }
 
+        $c_rec = Customer::all()->where('name', request('customers_name'))->first();
+        // dd($c_id);
+        if($c_rec == true){
+            $c_id = $c_rec->id;
+            
+        } else {
+            // create this customer in customer table
+            $customer = new Customer();
+            $customer->name = request('customers_name');
+            $customer->user_id = auth()->user()->id;
+            $customer->save();
+            $c_id= Customer::all()->where('name', request('customers_name'))
+            ->first()->id;
+        }
+        
         $posrecord = new Posrecord();
         $customer_name = $posrecord->customers_name = request('customers_name');
 
@@ -106,7 +122,7 @@ class PosrecordsController extends Controller
         $posrecord->card_number = request('card_number');
         $posrecord->trans_id = request('trans_id');
         $posrecord->terminal_location = request ('terminal_location');
-        $posrecord->trans_date = request ('trans_date');
+        $posrecord->trans_date_time = request ('trans_date_time');
         $posrecord->action_taken = request('action_taken');
         $posrecord->remarks = request('remarks');
         $posrecord->avater = $fileName;
@@ -132,7 +148,7 @@ class PosrecordsController extends Controller
             'card_number' => 'required',
             'trans_id' => 'required',
             'terminal_location' => 'required',
-            'trans_date' => 'required',
+            'trans_date_time' => 'required',
             'action_taken' => 'required',
             'remarks' => '',
             'avater' =>'|file|image|nullable|max:5000',
@@ -158,7 +174,8 @@ class PosrecordsController extends Controller
         $posrecord->card_number = request('card_number');
         $posrecord->trans_id = request('trans_id');
         $posrecord->terminal_location = request ('terminal_location');
-        $posrecord->trans_date = request ('trans_date');
+        //$posrecord->trans_time = request('trans_time');
+        $posrecord->trans_date_time = request ('trans_date_time');
         $posrecord->action_taken = request('action_taken');
         $posrecord->remarks = request('remarks');
         $posrecord->avater = $fileName;

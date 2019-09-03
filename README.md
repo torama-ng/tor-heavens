@@ -1,5 +1,11 @@
 # tor-heavens
 New things acheived
+1 Customers can now be created on the fly, at the form level
+2 Admins can create, update and delete while normal users cannot create , update and delete
+3 Superadmin can set permissions and have access to other admins while admins cannot.
+4 Multiple image upload for records added through excel import
+
+New things acheived
 1.Google login
 2.Email confirm with mailtrap
 3.Filter by bank, and location

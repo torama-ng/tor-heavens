@@ -13,6 +13,12 @@ use App\User;
 
 class ExcelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth' => 'verified']);
+        $this->middleware('admin');
+    }
+
     public function create(){
         $user = Auth::user();
         return view('excel.excel', compact('user') );
@@ -66,9 +72,10 @@ class ExcelController extends Controller
                         'card_number' => $row['card_number'],
                         'trans_id' => $row['trans_id'],
                         'terminal_location' => $row['terminal_location'],
-                        'trans_date' => $row['trans_date'],
+                        'trans_date_time' => $row['trans_date_time'],
                         'action_taken' => $row['action_taken'],
                         'remarks' => $row['remarks'],
+                        'avater' => $row['avater'],
                         
                     );
                     

@@ -23,7 +23,7 @@ class CreatePosrecordsTable extends Migration
             $table->string('trans_id');
             $table->string('terminal_location');
             $table->string('bank');
-            $table->string('trans_date');
+            $table->string('trans_date_time');
             $table->string('action_taken');
             $table->string('remarks');
             $table->string('avater')->default('default.jpg');

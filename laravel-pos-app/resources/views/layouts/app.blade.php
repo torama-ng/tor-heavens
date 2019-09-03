@@ -7,13 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Pos-Manager') }}</title>
-
+    <title>{{ config('app.name', 'Torama Pos-Manager') }}</title>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+    @yield('js')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/custom.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/3a9d6784a1.js"></script>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -54,17 +60,16 @@
             </div>
         </div>
         </footer>
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
+    
     <script>
       $(document).ready(function(){
           //Upload
           $('.showuser').on('click', function() {
               $('#modalpix').html('<div class="modal-body modal-dialog modal-content " role="document"><div class="col-md-4"><img src="uploads/avater/' + $(this).data('avatar') + '"/> </div><div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>  </div>')
           });
+          
       });
-
+     
       $(document).ready(function(){
         $("#myInput").on("keyup", function() {
           var value = $(this).val().toLowerCase();
@@ -73,7 +78,7 @@
           });
         });
       });
-      
+   
     </script>
     
 </body>

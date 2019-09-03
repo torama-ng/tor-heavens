@@ -11,9 +11,9 @@
       @endif
     <div class="row justify-content-center "> 
         
-        <a class="btn btn-primary mr-1 "href="{{ route('customers') }}">Add Customer</a> 
-        <a class="btn btn-primary mr-1 "href="{{ route('posrecords.create') }}">Add Record</a> 
-        <a href="{{ route('import') }}" class="btn btn-info mr-1">Import</a>
+        <a class="btn btn-primary mr-1" href="{{ route('customers') }}">Add Customer</a> 
+        <a class="btn btn-primary mr-1" href="{{ route('posrecords.create') }}">Add Record</a> 
+        <a class="btn btn-info mr-1 " href="{{ route('import') }}">Import / Upload</a>
         
         <input class="form-control col-md-3" id="myInput" type="text" placeholder="Search.."> 
         
@@ -58,13 +58,13 @@
             <th scope="col">Trans ID</th>
             <th scope="col">Terminal Location</th>
             <th scope="col">Bank</th>
-            <th scope="col">Transaction Date</th>
-            <th scope="col">Action Taken</th>
+            <th scope="col">Transaction Date_Time</th>
+            <th scope="col">Status</th>
             <th scope="col">Remarks</th>
             <th scope="col">customer ID</th>
             <th scope="col">Photo</th>
             <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            
           </tr>
         </thead>
         <tbody id="myTable">
@@ -78,18 +78,18 @@
             <td>{{$record->trans_id}}</td>
             <td>{{$record->terminal_location}}</td>
             <td>{{$record->bank}}</td>
-            <td>{{$record->trans_date}}</td>
+            <td>{{\Carbon\Carbon::parse($record->trans_date_time)->format('d.m.y H:i:a')}}</td>
             <td>{{$record->action_taken}}</td>
             <td>{{$record->remarks}}</td>
             <td>{{$record->customer->id}}</td>
             <td><button class="btn-primary showuser" data-avatar="{{ $record->avater}}" data-toggle="modal" data-target="#modalpix">
               image</button></td>
               <td><a class="btn btn-default"href="/posrecords/{{$record->id}}/edit"><i class="fas fa-edit "></i></a> </td>
-              <td><form action="/posrecords/{{$record->id}}" method="POST" >
+              <!-- <td><form action="/posrecords/{{$record->id}}" method="POST" >
               @method('delete')
               @csrf
               <button type ="submit" class="btn btn-default "><i class="fas fa-trash " ></i></button>
-              </form></td>
+              </form></td> -->
           </tr>
          <!-- Modal -->
       <div class="modal fade" id="modalpix" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
