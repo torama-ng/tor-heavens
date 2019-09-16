@@ -22,10 +22,10 @@ class CustomersController extends Controller
         $user_id = auth()->user()->id;
         $user_email = auth()->user()->email;
 
-        if($user_email == "admin@torama.ng"){
-            $customer = Customer::orderBy('created_at','desc')->paginate(7);
+        if($user_id == "1"){
+            $customer = Customer::orderBy('created_at','desc')->paginate(25);
         }else{
-            $customer = Customer::where('user_id',$user_id)->paginate(5);
+            $customer = Customer::where('user_id',$user_id)->paginate(25);
         }
         
         return view('customers.customers', compact('customer', 'user'));
@@ -46,6 +46,35 @@ class CustomersController extends Controller
         $customer->save();
 
         return redirect('/posrecords')->with('success', 'Customer added successfully');
+
+    }
+
+    public function edit($customer){
+        $user = Auth::user();
+        $user_id = auth()->user()->id;
+        $user_email = auth()->user()->email;
+
+        $customer = Customer::find($customer);
+        
+        
+        return view('customers.edit', compact('customer', 'user'));
+    }
+
+    public function update(Request $request, $customer){
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => '',
+            'address' => '',
+        ]);
+
+        $customer = Customer::find($customer);
+        $customer->name = request('name');
+        $customer->phone = request('phone');
+        $customer->address = request('address');
+        $customer->user_id = auth()->user()->id;
+        $customer->save();
+
+        return redirect('/posrecords')->with('success', 'Customer Updated successfully');
 
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
-use App\Customer;
-use App\Posrecord;
 use Image;
 use App\User;
+use App\Customer;
+use App\Posrecord;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 class PosrecordsController extends Controller
 {
     
@@ -30,40 +32,96 @@ class PosrecordsController extends Controller
         //  $posrecords = Posrecord::find('user_id', $user->posrecord)->orderBy('created_at','desc')->paginate(10);
        //  $posrecords = Posrecord::orderBy('created_at','desc')->paginate(10);
        //$posrecord = Posrecord::where('user_id', '1')->paginate(10);
+       //display filter count
+      
        
+    
        //check for admin
        if($user_id == "1"){
         $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25);
-          // return 123;  
+          
        }
        elseif($admin == "1"){
         //users
-       $posrecord = Posrecord::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(6);
+       $posrecord = Posrecord::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(25);
        $pos_rec = $posrecord;
        }
        else{
         $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25); 
        }
-       
-       
-       //display filter count
        $bank_count = Posrecord::where('user_id', $user_id)->with('bank')->count();
        $loc_count = Posrecord::where('user_id', $user_id)->with('terminal_location')->count();
        
+  
+
        //filtering
        if(request()->has('bank')){  
-        $posrecord = Posrecord::where('bank', request('bank'))->paginate(5);
-        }
-        if(request()->has('terminal_location')){
-        $posrecord = Posrecord::where('terminal_location', request('terminal_location'))->paginate(5);
-        }
-       
+           $posrecord = Posrecord::where('bank', request('bank'))->paginate(25);
+           return view('pos.posrecords', compact( 'posrecord', 'bank_count','loc_count','user'));
+           }
+           if(request()->has('terminal_location')){
+           $posrecord = Posrecord::where('terminal_location', request('terminal_location'))->paginate(25);
+           return view('pos.posrecords', compact( 'posrecord', 'bank_count','loc_count','user'));
+           }
+        
+          
         //dd($userrecords);
         return view('pos.posrecords', compact( 'posrecord', 'bank_count','loc_count','user'));
         // return view('pos.posrecords', compact( 'userrecords','posrecords'));
 
     }
+    public function groupby(){
+        $user = Auth::user();
+        $user_id = auth()->user()->id;
+        $admin = auth()->user()->admin;
+        $user_email = auth()->user()->email;
 
+        if($user_id == "1"){
+            $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25);
+              // return 123;  
+           }
+           elseif($admin == "1"){
+            //users
+           $posrecord = Posrecord::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(25);
+           $pos_rec = $posrecord;
+           }
+           else{
+            $posrecord = Posrecord::orderBy('created_at','desc')->paginate(25); 
+           }
+           $bank_count = Posrecord::where('user_id', $user_id)->with('bank')->count();
+           $loc_count = Posrecord::where('user_id', $user_id)->with('terminal_location')->count();
+           
+         //grouping
+    if(request()->has('trans_date_time')){  
+        $posrecords  = Posrecord::orderBy('created_at')->get()->groupBy('trans_date_time');
+        return view('pos.groupby', compact( 'posrecords', 'bank_count','loc_count','user'));
+       // dd($rec);
+     }
+     elseif(request()->has('bank')){  
+        $posrecords = Posrecord::orderBy('created_at')->get()->groupBy('bank');
+        return view('pos.groupby', compact( 'posrecords', 'bank_count','loc_count','user'));
+       // dd($rec);
+     }
+     elseif(request()->has('terminal_location')){  
+        $posrecords = Posrecord::orderBy('created_at')->get()->groupBy('terminal_location' );
+        return view('pos.groupby', compact( 'posrecords', 'bank_count','loc_count','user'));
+       // dd($rec);
+     }
+     elseif(request()->has('customer_id')){  
+        $posrecords = Posrecord::orderBy('created_at')->get()->groupBy('customer_id');
+        return view('pos.groupby', compact( 'posrecords', 'bank_count','loc_count','user'));
+       // dd($rec);
+     }
+     elseif(request()->has('action_taken')){  
+        $posrecords  = Posrecord::orderBy('created_at')->get()->groupBy('action_taken');
+        return view('pos.groupby', compact( 'posrecords', 'bank_count','loc_count','user'));
+       // dd($rec);
+     }
+    else {
+        $posrecord  = Posrecord::orderby('created_at')->paginate(25);
+      
+    }    
+    }
 
     public function create(){
         $user = Auth::user();
@@ -85,6 +143,9 @@ class PosrecordsController extends Controller
             'action_taken' => 'required',
             'remarks' => '',
             'avater' =>'|file|image|nullable|max:5000',
+            'fido_fluids' => 'required',
+            'fido_water' => 'required',
+            'reply_mail' => 'required',
         ]);
 
         if($request->hasFile('avater')){
@@ -125,6 +186,9 @@ class PosrecordsController extends Controller
         $posrecord->trans_date_time = request ('trans_date_time');
         $posrecord->action_taken = request('action_taken');
         $posrecord->remarks = request('remarks');
+        $posrecord->fido_fluids = request('fido_fluids');
+        $posrecord->fido_water = request('fido_water');
+        $posrecord->reply_mail = request('reply_mail');
         $posrecord->avater = $fileName;
         $posrecord->user_id = auth()->user()->id; //gets the currrent user id 
         $posrecord->save();
@@ -136,7 +200,7 @@ class PosrecordsController extends Controller
     public function edit($posrecord){
         $user = Auth::user();
         $customers = Customer::all();
-        $posrecord= Posrecord::find($posrecord);
+        $posrecord = Posrecord::find($posrecord);
         return view('pos.edit', compact('customers','posrecord', 'user'));
     }
 

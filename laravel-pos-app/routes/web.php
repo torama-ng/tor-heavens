@@ -26,6 +26,7 @@ Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('posrecords', 'PosrecordsController@index')->name('posrecords');
+Route::get('posrecord', 'PosrecordsController@groupby');
 Route::get('posrecords/create', 'PosrecordsController@create')->name('posrecords.create');
 Route::post('posrecords', 'PosrecordsController@store');
 Route::get('posrecords/{posrecord}/edit', 'PosrecordsController@edit')->name('posrecords.edit');
@@ -36,6 +37,8 @@ Route::get('/search','PosrecordController@search');
 
 Route::get('customers', 'CustomersController@index')->name('customers');
 Route::post('customers', 'CustomersController@store');
+Route::get('customers/{customer}/edit', 'CustomersController@edit')->name('customers.edit');
+Route::patch('customers/{customer}', 'CustomersController@update');
 
 Route::post('multiuploads', 'MultiuploadsController@store')->name('multiuploads');
 Route::get('import', 'ExcelController@create')->name('import');

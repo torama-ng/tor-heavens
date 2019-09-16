@@ -26,6 +26,9 @@ class CreatePosrecordsTable extends Migration
             $table->string('trans_date_time');
             $table->string('action_taken');
             $table->string('remarks');
+            $table->string('fido_fluids')->nullable();
+            $table->string('fido_water')->nullable();
+            $table->string('reply_mail');
             $table->string('avater')->default('default.jpg');
     
             $table->timestamps();

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('failure'))
+<div class="alert alert-danger" role="alert">
+    {{ session('failure') }}
+</div>
+@endif
 <div class="form-row justify-content-center">
 <div>{{$errors->first('select_file')}}</div>
 <form action="{{route('import')}}" method="POST" enctype="multipart/form-data" >

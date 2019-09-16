@@ -37,6 +37,7 @@
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
             <th scope="col">ID</th>
+            <th scope="col">Edit</th>
             
           </tr>
         </thead>
@@ -49,6 +50,7 @@
             <td>{{$cus->phone}}</td>
             <td>{{$cus->addres}}</td>
             <td>{{$cus->id}}</td>
+            <td><a class="btn btn-default"href="/customers/{{$cus->id}}/edit"><i class="fas fa-edit "></i></a> </td>
             </div>
           @endforeach
          

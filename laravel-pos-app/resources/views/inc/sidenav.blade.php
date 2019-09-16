@@ -11,6 +11,9 @@
       <div class="dropdown-divider"></div>
       @if(Auth::user()->id == "1")
       <li class="borderless lis"><a href="{{ route('admins') }}"><i class="mx-4 fas fa-id-badge"></i> Admins</a></li>
+      <div class="dropdown-divider"></div>
+      <li class="borderless lis"><a href="{{ route('admins.create') }}"><i class="mx-4 fas fa-id-badge"></i> Create Admins</a></li>
+      <div class="dropdown-divider"></div>
       @endif
    </ul>
  

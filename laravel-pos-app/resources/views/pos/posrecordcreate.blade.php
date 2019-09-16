@@ -67,13 +67,14 @@
         <label >Bank</label>
         <select name="bank" class="form-control form-control">
                 <option selected>Choose...</option>
-                <option> GTbank</option>
-                <option> Access Bank</option>
-                <option> First Bank</option>
-                <option> Eco Bank</option>
-                <option> Zenith bank</option>
-                <option> Fidelity bank</option>
-                <option> Wema bank</option>
+                <option> GTB</option>
+                <option> ACCESS</option>
+                <option> FIRST </option>
+                <option> ECO</option>
+                <option> ZENITH </option>
+                <option> FIDELITY</option>
+                <option> UBA</option>
+                <option> WEMA </option>
             </select>
         <div>{{$errors->first('bank')}}</div>
      </div>
@@ -92,16 +93,30 @@
         </div> 
   </div> 
  
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-3" >
+        <label >Fido Fluids</label>
+        <input name="fido_fluids" type="text" value="{{old('fido_fluids')}}"class="form-control form-control"  placeholder="Enter FIdo Fluid">
+        <div>{{$errors->first('fido_fluids')}}</div>
+    </div>
+
+    <div class="form-group col-md-3" >
+            <label >Fido Water</label>
+            <input name="fido_water" type="text" value="{{old('fido_water')}}"class="form-control form-control"  placeholder="Enter Fido Water">
+            <div>{{$errors->first('fido_water')}}</div>
+        </div> 
+  </div> 
+
     <div class="form-row justify-content-center">   
      <div class="form-group col-md-3">
         <label >Terminal Location</label>
         <select name="terminal_location" class="form-control form-control">
             <option selected>Choose...</option>
-            <option> Fido Okutukutu</option>
-            <option> Fido Swali</option>
-            <option> Fido Kpansia</option>
-            <option> Fido Obunna</option>
-            <option> Fido Yenegwe</option>
+            <option> OKUTUKUTU</option>
+            <option> SWALI</option>
+            <option> KPANSIA</option>
+            <option> OBUNNA</option>
+            <option> YENEGWE</option>
         </select>
         </div>
         
@@ -112,7 +127,7 @@
         </div>
     </div>
     <div class="form-row justify-content-center">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
         <label> Action Taken</label>
         <select name="action_taken" class="form-control form-control">    
             <option selected>Choose..</option>
@@ -120,6 +135,11 @@
             <option> Product not Released</option>
         </select>
     </div>
+    <div class="form-group col-md-3" >
+        <label >Reply Mail</label>
+        <input name="reply_mail" type="text" value="{{old('reply_mail')}}"class="form-control form-control"  placeholder="Reply Mail">
+        <div>{{$errors->first('reply_mail')}}</div>
+    </div> 
     </div>
     <div class="form-row justify-content-center">
         <div class="form-group col-6" >

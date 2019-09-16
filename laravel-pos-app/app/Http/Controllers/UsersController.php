@@ -20,7 +20,14 @@ class UsersController extends Controller
 
     public function index()
     {
-        return view('admin.users.index')->with('users', User::all());
+        $admin = User::where('admin', '1')->get();
+
+        if($admin == '1'){
+        $admin = User::where('admin', '1')->get();
+        }else{
+        $users = User::all();
+        }
+        return view('admin.users.index',compact( 'admin','users'));
     }
 
     /**
@@ -52,6 +59,7 @@ class UsersController extends Controller
 
             'name' => $request->name,
             'email' => $request->email,
+            'admin' => $request->admin,
             'password' => bcrypt('password')
         ]);
 

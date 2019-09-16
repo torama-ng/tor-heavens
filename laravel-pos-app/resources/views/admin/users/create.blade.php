@@ -26,7 +26,16 @@
     
                     <input type="email" name="email" class="form-control">
             </div>
-           
+            <div class="form-group">
+                    <label for="name">Role</label>
+    
+            <select name="admin" class="form-control form-control">    
+                    <option selected>Choose..</option>
+                    <option> 0</option>
+                    <option> 1</option>
+            </select>
+            </div>
+                   
 
             <div class="form-group">
                 <div class="text-center">

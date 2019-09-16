@@ -31,8 +31,10 @@ class ExcelController extends Controller
         ]);
 
         $path = $request->file('select_file')->getRealPath();
-
+    
+      try {
         $data = Excel::load($path)->get();
+        
         if(count($data) > 0 ){
 
             foreach($data->toArray() as $key => $value){
@@ -76,6 +78,10 @@ class ExcelController extends Controller
                         'action_taken' => $row['action_taken'],
                         'remarks' => $row['remarks'],
                         'avater' => $row['avater'],
+                        'fido_fluids' => $row['fido_fluids'],
+                        'fido_water' => $row['fido_water'],
+                        'reply_mail' => $row['reply_mail'],
+
                         
                     );
                     
@@ -93,8 +99,12 @@ class ExcelController extends Controller
 
             
         }
+    } catch (\Exception $e) {
+        if($e){ return redirect ('/import')->with('failure', 'File not imported, fields did not matched the format given below ');}
+    
+    }
         
-        return redirect ('/posrecords')->with('success', 'Record imported Successfully')->with('customer_id',$c_id);
-
+   
+    return redirect ('/posrecords')->with('success', 'Record imported Successfully')->with('customer_id',$c_id);
     }
 }
